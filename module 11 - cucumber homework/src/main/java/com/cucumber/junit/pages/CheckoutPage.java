@@ -2,24 +2,33 @@ package com.cucumber.junit.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class CheckoutPage extends BasePage {
     private static final String emailFieldName = "emailAddress";
     private static final String checkoutSubtotalXpath = "//div[contains(@aria-label, 'Sub-total')]//dd";
     private static final String checkoutTotalXpath = "//div[contains(@aria-label, 'Total')]//dd";
     private static final String checkoutVATXpath = "//div[contains(@aria-label, 'VAT')]//dd";
+    @FindBy(name = emailFieldName)
+    public WebElement emailField;
 
-    public WebElement emailField() {
-        return findElement(By.name(emailFieldName));
+    @FindBy(xpath = checkoutSubtotalXpath)
+    public WebElement checkoutSubtotalEl;
+
+    public String getCheckoutSubtotal() {
+        return checkoutSubtotalEl.getText();
     }
-    public String checkoutSubtotal() {
-        return findElement(By.xpath(checkoutSubtotalXpath)).getText();
+    @FindBy(xpath = checkoutTotalXpath)
+    public WebElement CheckoutTotalEl;
+
+    public String getCheckoutTotal() {
+        return CheckoutTotalEl.getText();
     }
-    public String checkoutTotal() {
-        return findElement(By.xpath(checkoutTotalXpath)).getText();
-    }
-    public String checkoutVAT() {
-        return findElement(By.xpath(checkoutVATXpath)).getText();
+
+    @FindBy(xpath = checkoutVATXpath)
+    public WebElement CheckoutVatEl;
+    public String getCheckoutVAT() {
+        return CheckoutVatEl.getText();
     }
 
 
